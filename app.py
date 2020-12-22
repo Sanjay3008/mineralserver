@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/predict',methods=['POST','GET'])
 def predict():
  
-    value=24.375
+    value=32.175
     dataset = pd.read_csv('Mineral.csv')
     x = dataset.iloc[:, :-1]
     y = dataset.iloc[:, -1]
