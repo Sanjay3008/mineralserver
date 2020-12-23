@@ -8,6 +8,7 @@ app = Flask(__name__)
 def predict():
  
     value=32.175
+     data  =request.get_json()
     dataset = pd.read_csv('Mineral.csv')
     x = dataset.iloc[:, :-1]
     y = dataset.iloc[:, -1]
