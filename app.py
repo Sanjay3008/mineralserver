@@ -8,8 +8,7 @@ app = Flask(__name__)
 @app.route('/post',methods=['POST','GET'])
 def post():
  data1  =request.get_json()
- value=int(data1['data_i'])
-    return str(value)
+ return data1
 
 
  
