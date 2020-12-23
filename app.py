@@ -32,7 +32,7 @@ def post():
     print(mineral_name)
     return str(mineral_name)
 
- return data1
+
  
 @app.route('/predict',methods=['POST','GET'])
 def predict():
