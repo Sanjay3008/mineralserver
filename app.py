@@ -4,11 +4,16 @@ from flask import Flask, request, jsonify,render_template
 
 app = Flask(__name__)
 
+data=""
+@app.route('/post',methods=['POST','GET'])
+def post():
+ data1  =request.get_json()
+ return data1
+ 
 @app.route('/predict',methods=['POST','GET'])
 def predict():
  
     value=32.175
-     data  =request.get_json()
     dataset = pd.read_csv('Mineral.csv')
     x = dataset.iloc[:, :-1]
     y = dataset.iloc[:, -1]
