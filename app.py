@@ -1,12 +1,14 @@
 import numpy as np
 import pandas as pd
-import time
 from flask import Flask, request, jsonify,render_template
 
 app = Flask(__name__)
 
-
-def pre_m(value):
+ 
+@app.route('/post',methods=['POST','GET'])
+def post():
+ data1  =request.get_json()
+ value=data1["data_i"]
  dataset = pd.read_csv('Mineral.csv')
  x = dataset.iloc[:, :-1]
  y = dataset.iloc[:, -1]
@@ -27,17 +29,8 @@ def pre_m(value):
 
  y_p = classifier.predict([[value]])
  mineral_name = encoder.inverse_transform(y_p)
- print(mineral_name)
- return str(mineral_name)
-
+ data1["min_name"]= mineral_name
  
-@app.route('/post',methods=['POST','GET'])
-def post():
- data1  =request.get_json()
- value=data1["data_i"]
- data1["min_name"]= pre_m(value)
- 
- time.sleep(30)
  return data1
 
 
