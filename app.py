@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import time
 from flask import Flask, request, jsonify,render_template
 
 app = Flask(__name__)
@@ -35,6 +36,8 @@ def post():
  data1  =request.get_json()
  value=data1["data_i"]
  data1["min_name"]= pre_m(value)
+ 
+ time.sleep(30)
  return data1
 
 
