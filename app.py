@@ -11,6 +11,11 @@ def min_pred(value):
  x= np.int32(np.around(x * 10**4))
  y = dataset.iloc[:, -1]
  
+ value  = (float)value
+ value= np.int32(np.around(value * 10**4))
+value = str(value)
+ 
+ 
 
  from sklearn.preprocessing import LabelEncoder
  encoder = LabelEncoder()
