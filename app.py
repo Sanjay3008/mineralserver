@@ -14,7 +14,7 @@ def min_pred(value):
 max= np.max(x)
 min_e = min-4
 max_e = max+4
-if(((int)(value)<min_e) || ((int)(value)>max_e)):
+if(((int)(value)<min_e) | ((int)(value)>max_e)):
   return 'No Element'
  
  
