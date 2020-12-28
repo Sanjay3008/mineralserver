@@ -10,7 +10,12 @@ def min_pred(value):
  x = dataset.iloc[:, :-1]
  x= np.int32(np.around(x * 10**4))
  y = dataset.iloc[:, -1]
- 
+ min=np.min(x)
+max= np.max(x)
+min_e = min-4
+max_e = max+4
+if(((int)(value)<min_e) || ((int)(value)>max_e)):
+  return 'No Element'
  
  
 
