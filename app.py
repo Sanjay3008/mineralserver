@@ -38,6 +38,9 @@ def post():
  return data1
 
 
+@app.route('/connect',methods=['POST','GET'])
+def handle_request():
+    return "Successful Connection"
  
 @app.route('/predict',methods=['POST','GET'])
 def predict():
