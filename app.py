@@ -73,6 +73,13 @@ def post():
  data1["min_name"] = min_pred(value)
  return data1
 
+@app.route('/predict_air',methods=['POST','GET'])
+def post():
+ data1  =request.get_json()
+ value=data1["data_i"]
+ data1["min_name"] = min_pred_air(value)
+ return data1
+
 
 @app.route('/connect',methods=['POST','GET'])
 def handle_request():
