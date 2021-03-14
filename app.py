@@ -16,8 +16,8 @@ def min_pred_air(value):
  if(((int)(value)<min_e) | ((int)(value)>max_e)):
   return 'No Element'
  
-x= x.reshape(-1, 1)
-y= y.reshape(-1, 1)
+ x= x.reshape(-1, 1)
+ y= y.reshape(-1, 1)
  
 
  from sklearn.preprocessing import LabelEncoder
