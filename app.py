@@ -37,14 +37,15 @@ def min_pred_air(value):
 def min_pred(value):
  dataset = pd.read_csv('Mineral.csv')
  x = dataset.iloc[:, :-1]
- x= np.int32(np.around(x * 10**4))
+ x= (x * (10**4))
+ value= (value * (10**4))
  y = dataset.iloc[:, -1]
  min=np.min(x)
  max= np.max(x)
  min_e = min-4
  max_e = max+4
  if(((int)(value)<min_e) | ((int)(value)>max_e)):
-  return 'No Element'
+  return 'No_Element'
  
  
 
