@@ -42,12 +42,12 @@ def min_pred(value):
    value = (value * 10000)
    y = dataset.iloc[:, -1].values
 
-   min = np.min(x)
-   max = np.max(x)
-   min_e = min - 4
-   max_e = max + 4
-   if (((int)(value) < min_e) | ((int)(value) > max_e)):
-       return 'No_Element'
+#    min = np.min(x)
+#    max = np.max(x)
+#    min_e = min - 4
+#    max_e = max + 4
+#    if (((int)(value) < min_e) | ((int)(value) > max_e)):
+#        return 'No_Element'
 
    from sklearn.preprocessing import LabelEncoder
    encoder = LabelEncoder()
