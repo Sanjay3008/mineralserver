@@ -6,27 +6,30 @@ app = Flask(__name__)
 
 
 def min_pred_air(value):
- dataset = pd.read_csv('Mineral_.csv')
+ dataset  = pd.read_csv('Mineral_.csv')
  x = dataset.iloc[:,2].values
- y = dataset.iloc[:,0].values
 
- 
+ y = dataset.iloc[:,0].values
+ print(x)
+ print(y)
  x= x.reshape(-1, 1)
  y= y.reshape(-1, 1)
+ min=np.min(x)
+ max= np.max(x)
+ min_e = min-2;
+ max_e = max+2
  
-
  from sklearn.preprocessing import LabelEncoder
- encoder = LabelEncoder()
- y = encoder.fit_transform(y)
+ label_encoder  = LabelEncoder()
+ y= label_encoder.fit_transform(y)
  
-
  from sklearn.model_selection import train_test_split
- x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=2)
-
+ x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.55,random_state=0)
+ 
  from sklearn.tree import DecisionTreeClassifier
- classifier = DecisionTreeClassifier(criterion='entropy', max_leaf_nodes=1000)
- classifier.fit(x, y)
-
+ classifier=DecisionTreeClassifier()
+ classifier.fit(x,y)
+ 
  y_p = classifier.predict([[value]])
  mineral_name = encoder.inverse_transform(y_p)
  return str(mineral_name)
