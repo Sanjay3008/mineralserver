@@ -31,7 +31,7 @@ def min_pred_air(value):
  classifier.fit(x,y)
  
  y_p = classifier.predict([[value]])
- mineral_name = encoder.inverse_transform(y_p)
+ mineral_name = label_encoder.inverse_transform(y_p)
  return str(mineral_name)
 
 def min_pred(value):
