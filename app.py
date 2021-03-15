@@ -9,7 +9,7 @@ def min_pred(value):
  dataset = pd.read_csv('Mineral.csv')
  x = dataset.iloc[:, :-1]
  x = np.int32(np.around(x * 10 ** 4))
- 
+ value=str((int)(value)*10000)
  y = dataset.iloc[:, -1]
 
  min = np.min(x)
