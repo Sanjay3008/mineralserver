@@ -35,33 +35,34 @@ def min_pred_air(value):
  return str(mineral_name)
 
 def min_pred(value):
- dataset = pd.read_csv('Mineral.csv')
- x = dataset.iloc[:, :-1]
- y = dataset.iloc[:, -1]
- min=np.min(x)
- max= np.max(x)
- min_e = min-4
- max_e = max+4
- if(((int)(value)<min_e) | ((int)(value)>max_e)):
-  return 'No_Element'
- 
- 
+   dataset = pd.read_csv('Mineral.csv')
+   x = dataset.iloc[:, :-1].values
+   x = (x * 10000)
 
- from sklearn.preprocessing import LabelEncoder
- encoder = LabelEncoder()
- y = encoder.fit_transform(y)
- 
+   value = (value * 10000)
+   y = dataset.iloc[:, -1].values
 
- from sklearn.model_selection import train_test_split
- x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=2)
+   min = np.min(x)
+   max = np.max(x)
+   min_e = min - 4
+   max_e = max + 4
+   if (((int)(value) < min_e) | ((int)(value) > max_e)):
+       return 'No_Element'
 
- from sklearn.tree import DecisionTreeClassifier
- classifier = DecisionTreeClassifier(criterion='entropy', max_leaf_nodes=1000)
- classifier.fit(x, y)
+   from sklearn.preprocessing import LabelEncoder
+   encoder = LabelEncoder()
+   y = encoder.fit_transform(y)
 
- y_p = classifier.predict([[value]])
- mineral_name = encoder.inverse_transform(y_p)
- return str(mineral_name)
+   from sklearn.model_selection import train_test_split
+   x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=2)
+
+   from sklearn.tree import DecisionTreeClassifier
+   classifier = DecisionTreeClassifier(criterion='entropy', max_leaf_nodes=1000)
+   classifier.fit(x, y)
+
+   y_p = classifier.predict([[value]])
+   mineral_name = encoder.inverse_transform(y_p)
+   return str(mineral_name)
  
 @app.route('/post',methods=['POST','GET'])
 def post():
