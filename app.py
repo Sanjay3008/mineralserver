@@ -37,8 +37,6 @@ def min_pred_air(value):
 def min_pred(value):
  dataset = pd.read_csv('Mineral.csv')
  x = dataset.iloc[:, :-1]
- x= (x * 10000)
- value= (value * 10000)
  y = dataset.iloc[:, -1]
  min=np.min(x)
  max= np.max(x)
