@@ -45,7 +45,7 @@ def min_pred_water(value):
  y= y.reshape(-1, 1)
  min=np.min(x)
  max= np.max(x)
- min_e = min-2;
+ min_e = min-2
  max_e = max+2
  
  from sklearn.preprocessing import LabelEncoder
@@ -76,7 +76,7 @@ def min_pred_air(value):
  y= y.reshape(-1, 1)
  min=np.min(x)
  max= np.max(x)
- min_e = min-2;
+ min_e = min-2
  max_e = max+2
  
  from sklearn.preprocessing import LabelEncoder
