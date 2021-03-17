@@ -17,7 +17,7 @@ def min_pred(value):
  min_e = min - 4
  max_e = max + 4
  if (((int)(value) < min_e) | ((int)(value) > max_e)):
-     return 'No_Element'
+     return 'NIL'
 
  from sklearn.preprocessing import LabelEncoder
  encoder = LabelEncoder()
@@ -110,11 +110,11 @@ def post_air():
  data2["min_name"] = min_pred_air(value)
  return data2
 
-@app.route('/predict_air',methods=['POST','GET'])
+@app.route('/predict_water',methods=['POST','GET'])
 def post_water():
  data3  =request.get_json()
  value=data3["data_i"]
- data3["min_name"] = min_pred_air(value)
+ data3["min_name"] = min_pred_water(value)
  return data3
 
 
