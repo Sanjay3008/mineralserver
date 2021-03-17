@@ -34,6 +34,36 @@ def min_pred(value):
  mineral_name = encoder.inverse_transform(y_p)
  return str(mineral_name)
 
+def min_pred_water(value):
+ dataset  = pd.read_csv('Mineral_.csv')
+ x = dataset.iloc[:,4].values
+
+ y = dataset.iloc[:,0].values
+ print(x)
+ print(y)
+ x= x.reshape(-1, 1)
+ y= y.reshape(-1, 1)
+ min=np.min(x)
+ max= np.max(x)
+ min_e = min-2;
+ max_e = max+2
+ 
+ from sklearn.preprocessing import LabelEncoder
+ label_encoder  = LabelEncoder()
+ y= label_encoder.fit_transform(y)
+ 
+ from sklearn.model_selection import train_test_split
+ x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.55,random_state=0)
+ 
+ from sklearn.tree import DecisionTreeClassifier
+ classifier=DecisionTreeClassifier()
+ classifier.fit(x,y)
+ 
+ y_p = classifier.predict([[value]])
+ mineral_name = label_encoder.inverse_transform(y_p)
+ return str(mineral_name)
+
+
 
 def min_pred_air(value):
  dataset  = pd.read_csv('Mineral_.csv')
@@ -79,6 +109,13 @@ def post_air():
  value=data2["data_i"]
  data2["min_name"] = min_pred_air(value)
  return data2
+
+@app.route('/predict_air',methods=['POST','GET'])
+def post_water():
+ data3  =request.get_json()
+ value=data3["data_i"]
+ data3["min_name"] = min_pred_air(value)
+ return data3
 
 
 @app.route('/connect',methods=['POST','GET'])
