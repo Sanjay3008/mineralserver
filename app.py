@@ -94,7 +94,73 @@ def min_pred_air(value):
  mineral_name = label_encoder.inverse_transform(y_p)
  return str(mineral_name)
 
+def min_estimate(p,q,r):
+ import numpy as np
+ import pandas as pd
+ from sklearn.model_selection import train_test_split
+ from sklearn.svm import LinearSVR
+ from sklearn.multioutput import MultiOutputRegressor
+ 
+ dataset=pd.read_csv("data.csv")
+ X1=dataset.iloc[:,11].values
+ X2=dataset.iloc[:,14].values
+ X3=dataset.iloc[:,15].values
+ X=[]
+ for i in range (0,len(X1)):
+   x=[]
+   x.append(X1[i])
+   x.append(X2[i])
+   x.append(X3[i])
+   X.append(x)
 
+
+ Y=[]
+ y1=dataset.iloc[:,6].values
+ y2=dataset.iloc[:,7].values
+ y3=dataset.iloc[:,9].values
+ # y4=dataset.iloc[:,9].values
+
+ for i in range (0,len(X)):
+   y=[]
+   y.append(y1[i])
+   y.append(y2[i])
+   y.append(y3[i])
+   # y.append(y4[i])
+   Y.append(y)
+
+ # X=scaler.fit_transform(X)
+ # Y=scaler.fit_transform(Y)
+ x_train,x_test,y_train,y_test = train_test_split(X,Y,train_size=0.9,random_state=0)
+ x_train=np.array(x_train)
+ y_train=np.array(y_train)
+ x_test=np.array(x_test)
+
+ x_t=X[0:8]
+ y_t=Y[0:8]
+
+
+ model  = LinearSVR()
+ # define the chained multioutput wrapper model
+ wrapper =  MultiOutputRegressor(model)
+ # fit the model on the whole dataset
+ wrapper.fit(x_t, y_t)
+ y_p1=wrapper.predict([[p,q,r]])
+ data1["Calcium"]=y_p1[0][0]
+ data1["Magnesium"]=y_p1[0][1]
+ data1["Sodium"]=y_p1[0][2]
+ return data1
+ 
+ 
+
+
+@app.route('/estimate',methods=['POST','GET'])
+def post_estimate():
+ data3  =request.get_json()
+ reflected=data3["reflected"]
+ moisture=data3["moisture"]
+ infrared=data3["infrared"]
+ data4= min_estimate(reflected,moisture,infrared,data3)
+ return data4
  
 @app.route('/post',methods=['POST','GET'])
 def post():
