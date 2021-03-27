@@ -94,14 +94,14 @@ def min_pred_air(value):
  mineral_name = label_encoder.inverse_transform(y_p)
  return str(mineral_name)
 
-def min_estimate(p,q,r):
+def min_estimate(p,q,r,data1):
  import numpy as np
  import pandas as pd
  from sklearn.model_selection import train_test_split
  from sklearn.svm import LinearSVR
  from sklearn.multioutput import MultiOutputRegressor
  
- dataset=pd.read_csv("data.csv")
+ dataset=pd.read_csv("data1.csv")
  X1=dataset.iloc[:,11].values
  X2=dataset.iloc[:,14].values
  X3=dataset.iloc[:,15].values
