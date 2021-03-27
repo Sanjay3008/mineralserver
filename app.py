@@ -159,7 +159,7 @@ def post_estimate():
  reflected=data3["reflected"]
  moisture=data3["moisture"]
  infrared=data3["infrared"]
- data4= min_estimate(reflected,moisture,infrared,data3)
+ data4= min_estimate(reflected,infrared,moisture,data3)
  return data4
  
 @app.route('/post',methods=['POST','GET'])
